@@ -1,0 +1,72 @@
+name: Run Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_type:
+        description: 'Choose the type of test to run'
+        required: true
+        type: choice
+        options:
+          - Web Browser Automation (Single)
+          - Web Browser Automation (Parallel)
+          - Mobile Browser Automation (Single)
+          - Android App Automation (Single)
+          - Android App Automation (Parallel)
+          - iOS App Automation (Single)
+          - iOS App Automation (Parallel)
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+    
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'  # Use 'temurin' for Eclipse Temurin
+          cache: 'maven'           # Enable caching for Maven dependencies
+
+      - name: Set up Node.js for Playwright and Cypress
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Run the selected test
+        run: |
+          case "${{ github.event.inputs.test_type }}" in
+            "Web Browser Automation (Single)")
+              mvn test -D suite=single.xml
+              ;;
+            "Web Browser Automation (Parallel)")
+              mvn test -D suite=parallel.xml
+              ;;
+            "Mobile Browser Automation (Single)")
+              mvn test -D suite=mobile.xml
+              ;;
+            "Android App Automation (Single)")
+              mvn test -D suite=android_single.xml
+              ;;
+            "Android App Automation (Parallel)")
+              mvn test -D suite=android_parallel.xml
+              ;;
+            "iOS App Automation (Single)")
+              mvn test -D suite=iOS_single.xml
+              ;;
+            "iOS App Automation (Parallel)")
+              mvn test -D suite=iOS_parallel.xml
+              ;;
+            *)
+              echo "Invalid option selected"
+              exit 1
+              ;;
+          esac
