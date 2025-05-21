@@ -8,13 +8,17 @@ on:
         required: true
         type: choice
         options:
-          - Web Browser Automation (Single)
+          - Web Automation With Accessibility (Single)
           - Web Browser Automation (Parallel)
           - Mobile Browser Automation (Single)
           - Android App Automation (Single)
           - Android App Automation (Parallel)
           - iOS App Automation (Single)
           - iOS App Automation (Parallel)
+          - Android App Automation (Visual Regression)
+          - iOS App Automation (Visual Regression)
+          - Android App Automation (Visual Regression - SDK)
+          - iOS App Automation (Visual Regression - SDK)
 
 jobs:
   run_tests:
@@ -44,7 +48,7 @@ jobs:
       - name: Run the selected test
         run: |
           case "${{ github.event.inputs.test_type }}" in
-            "Web Browser Automation (Single)")
+            "Web Automation With Accessibility (Single)")
               mvn test -D suite=single.xml
               ;;
             "Web Browser Automation (Parallel)")
@@ -65,6 +69,18 @@ jobs:
             "iOS App Automation (Parallel)")
               mvn test -D suite=iOS_parallel.xml
               ;;
+            "Android App Automation (Visual Regression)")
+              mvn test -D suite=android_visual_regression_hooks.xml
+              ;;
+            "iOS App Automation (Visual Regression)")
+              mvn test -D suite=iOS_visual_regression_hooks.xml
+              ;;
+            "Android App Automation (Visual Regression - SDK)")
+              mvn test -D suite=android_visual_regression_sdk.xml
+              ;;
+            "iOS App Automation (Visual Regression - SDK)")
+              mvn test -D suite=ios_visual_regression_sdk.xml
+              ;; 
             *)
               echo "Invalid option selected"
               exit 1
