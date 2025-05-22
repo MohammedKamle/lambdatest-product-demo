@@ -79,7 +79,7 @@ jobs:
               mvn test -D suite=android_visual_regression_sdk.xml
               ;;
             "iOS App Automation (Visual Regression - SDK)")
-              mvn test -D suite=ios_visual_regression_sdk.xml
+              mvn test -D suite=iOS_visual_regression_sdk.xml
               ;; 
             *)
               echo "Invalid option selected"
