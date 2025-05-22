@@ -111,8 +111,8 @@ public class Visual_Regression_AndroidApp_sdk
         ltOptions.put("devicelog", true);
         /* Enable App Profiling with caution - not needed in all the cases */
         ltOptions.put("appProfiling", true);
-        ltOptions.put("projectToken", 
-                      "2564217#f3286639-ed58-452f-b80b-71297198c3b3#SmartUI-SDK-Demo");
+        // ltOptions.put("projectToken", 
+        //               "2564217#f3286639-ed58-452f-b80b-71297198c3b3#SmartUI-SDK-Demo");
 
         capabilities.setCapability("lt:options", ltOptions);
 
