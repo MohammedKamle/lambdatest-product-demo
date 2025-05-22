@@ -11,6 +11,7 @@ on:
           - Web Automation With Accessibility (Single)
           - Web Browser Automation (Parallel)
           - Mobile Browser Automation (Single)
+          - Web Browser Automation (SDK)
           - Android App Automation (Single)
           - Android App Automation (Parallel)
           - iOS App Automation (Single)
@@ -53,6 +54,9 @@ jobs:
               ;;
             "Web Browser Automation (Parallel)")
               mvn test -D suite=parallel.xml
+              ;;
+            "Web Browser Automation (SDK)")
+              mvn test -D suite=web-sdk-cloud.xml
               ;;
             "Mobile Browser Automation (Single)")
               mvn test -D suite=mobile.xml
