@@ -56,7 +56,7 @@ jobs:
               mvn test -D suite=parallel.xml
               ;;
             "Web Browser Automation (SDK)")
-              mvn test -D suite=web-sdk-cloud.xml
+              npx smartui --config smartui-web.json exec -- mvn test -Dsuite=web-sdk-cloud.xml
               ;;
             "Mobile Browser Automation (Single)")
               mvn test -D suite=mobile.xml
