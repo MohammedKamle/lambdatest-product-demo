@@ -117,7 +117,7 @@ public class Visual_Regression_IOSApp_sdk
         ltOptions.put("appProfiling", true);
         ltOptions.put("geoLocation", "US");
         ltOptions.put("projectToken", 
-                        "407654#3cf24d62-4f12-43b7-bac7-efa781ee8826#iOS-SmartUI-SDK-Demo");
+                        "2564217#f3286639-ed58-452f-b80b-71297198c3b3#SmartUI-SDK-Demo");
 
         capabilities.setCapability("lt:options", ltOptions);
 
@@ -130,7 +130,7 @@ public class Visual_Regression_IOSApp_sdk
         screenshotConfig.put("deviceName",device);
         screenshotConfig.put("platform", platform);
         screenshotConfig.put("projectToken", 
-                        "123456#1234abcd-1234-1234-1234-123456789101");
+                        "2564217#f3286639-ed58-452f-b80b-71297198c3b3");
 
         try 
         {            

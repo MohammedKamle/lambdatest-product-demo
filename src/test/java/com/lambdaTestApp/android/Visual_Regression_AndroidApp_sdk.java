@@ -112,7 +112,7 @@ public class Visual_Regression_AndroidApp_sdk
         /* Enable App Profiling with caution - not needed in all the cases */
         ltOptions.put("appProfiling", true);
         ltOptions.put("projectToken", 
-                      "2564217#d0a64413-43f5-4e0d-95af-ac9116632d04#Android-SmartUI-SDK-Demo");
+                      "2564217#f3286639-ed58-452f-b80b-71297198c3b3#SmartUI-SDK-Demo");
 
         capabilities.setCapability("lt:options", ltOptions);
 
@@ -125,7 +125,7 @@ public class Visual_Regression_AndroidApp_sdk
         screenshotConfig.put("deviceName",device);
         screenshotConfig.put("platform",platform);
         screenshotConfig.put("projectToken", 
-                      "123456#1234abcd-1234-1234-1234-123456789101");
+                      "2564217#f3286639-ed58-452f-b80b-71297198c3b3");
         try 
         {            
             smartUIAppSnapshot.start();
