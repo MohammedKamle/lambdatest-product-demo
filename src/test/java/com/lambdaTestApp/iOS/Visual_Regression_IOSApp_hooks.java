@@ -36,7 +36,7 @@ public class Visual_Regression_IOSApp_hooks
 
     public String gridURL = "@mobile-hub.lambdatest.com/wd/hub";
 
-    String sProjectName = "lambdatest-realdevices-demo";
+    String sProjectName = "SmartUI-Hooks-Demo";
     String sBuildName = "iOS - Visual Regression with Java TestNG";
 
     String sSpeedTestScreenshot = "iOS-SpeedTestScreenshot";

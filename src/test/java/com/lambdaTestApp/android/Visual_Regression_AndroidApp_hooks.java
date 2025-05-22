@@ -34,7 +34,7 @@ public class Visual_Regression_AndroidApp_hooks
     String accessKey = System.getenv("LT_ACCESS_KEY") == null ? "Your LT AccessKey" :
                     System.getenv("LT_ACCESS_KEY");
 
-    String sProjectName = "lambdatest-realdevices-demo";
+    String sProjectName = "SmartUI-Hooks-Demo";
     String sBuildName = "Android - Visual Regression with Java TestNG";
 
     String credential = Credentials.basic(userName, accessKey);

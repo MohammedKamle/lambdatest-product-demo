@@ -39,8 +39,8 @@ public class SmartUISDKCloud
         caps.setCapability("browserName", "chrome");
         caps.setCapability("version", "latest");
         caps.setCapability("build", "Smart SDK: TestNG With Java");
-        caps.setCapability("projectToken",
-                      "550422#d21222ea-2c65-46e9-9e18-9bb79126659a#Web-SmartUI-SDK-Demo");
+        // caps.setCapability("projectToken",
+        //               "550422#d21222ea-2c65-46e9-9e18-9bb79126659a#Web-SmartUI-SDK-Demo");
         caps.setCapability("name", m.getName() + " - " + this.getClass().getName());
         
         if (githubURL != null)
