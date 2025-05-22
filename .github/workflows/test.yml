@@ -56,7 +56,7 @@ jobs:
               mvn test -D suite=parallel.xml
               ;;
             "Web Browser Automation (SDK)")
-              npm install -g @lambdatest/smartui-cli
+              npm install -g @lambdatest/smartui-cli --force
               smartui --config smartui-web.json exec -- mvn test -Dsuite=web-sdk-cloud.xml
               ;;
             "Mobile Browser Automation (Single)")
