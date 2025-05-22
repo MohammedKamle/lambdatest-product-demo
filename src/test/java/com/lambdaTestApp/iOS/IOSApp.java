@@ -66,6 +66,8 @@ public class IOSApp {
             capabilities.setCapability("visual", true);
             capabilities.setCapability("devicelog", true);
             capabilities.setCapability("appProfiling", true);
+            capabilities.setCapability("autoAcceptAlerts", true);
+            capabilities.setCapability("autoGrantPermissions", true);
             //capabilities.setCapability("geoLocation", "HK");
 
             String hub = "https://" + userName + ":" + accessKey + gridURL;
