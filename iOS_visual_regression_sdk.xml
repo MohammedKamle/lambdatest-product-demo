@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" parallel="tests" name="Suite">
+  <test thread-count="1" parallel="classes" name="Test">
+    <parameter name="version" value="15" />
+    <parameter name="platform" value="iOS" />
+    <parameter name="device" value="iPhone.*" />
+    <classes>
+      <class name="com.lambdaTestApp.iOS.Visual_Regression_IOSApp_sdk"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

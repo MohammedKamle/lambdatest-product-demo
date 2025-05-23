@@ -39,7 +39,7 @@ public class TestNGTodo1 {
         caps.setCapability("systemLog", true);
         caps.setCapability("terminal", true);
         caps.setCapability("video", true);
-         caps.setCapability("accessibility", true);
+        caps.setCapability("accessibility", true);
         caps.setCapability("accessibility.bestPractice", true);
         caps.setCapability("accessibility.needsReview", true);
 
