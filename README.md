@@ -1,3 +1,15 @@
+# 🔧 LambdaTest Demo Repo
+
+## Fork this repo in your github account
+
+## 🔐 Setup Your LambdaTest Credentials
+
+Before running any tests, make sure to set your LambdaTest credentials using below env varaibles in Secrets of this repo:
+
+```bash
+ LT_USERNAME
+ LT_ACCESS_KEY
+```
 
 ```
 To run single test (Web Browser Automation) use below command
