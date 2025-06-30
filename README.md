@@ -1,70 +1,76 @@
-# 🔧 LambdaTest Demo Repo
+# 🔧 LambdaTest Demo Repository
 
-## Fork this repo in your github account
+## 📌 Fork This Repository
+Start by forking this repository into your GitHub account.
 
-## 🔐 Setup Your LambdaTest Credentials
+## 🔐 Set Up Your LambdaTest Credentials
+Before running any tests, make sure to add your LambdaTest credentials as GitHub repository secrets:
+- `LT_USERNAME`
+- `LT_ACCESS_KEY`
 
-Before running any tests, make sure to set your LambdaTest credentials using below env varaibles in Secrets of this repo:
+You can add these under **Settings > Secrets and variables > Actions** in your GitHub repo.
+
+## 🚀 Running the Tests
+
+### ▶️ Via GitHub Actions
+1. Navigate to the **Actions** tab of your forked repository
+2. Select the **Run Tests** workflow
+3. Click **Run workflow** and choose the specific test suite you'd like to run from the dropdown
+
+### 💻 Via Command Line
+You can also run tests locally using Maven or Node.js commands. Below are the available test suites:
+
+## 🧪 Web Browser Automation
 
 ```bash
- LT_USERNAME
- LT_ACCESS_KEY
+# Single test
+mvn test -D suite=single.xml
+
+# Accessibility test
+mvn test -D suite=accessibility.xml
+
+# Parallel test
+mvn test -D suite=parallel.xml
 ```
 
-```
-To run single test (Web Browser Automation) use below command
-     mvn test -D suite=single.xml
+## 📱 Mobile Browser Automation
 
-To run single test (Mobile Browser Automation) use below command
-     mvn test -D suite=mobile.xml
-     
-To run accesiility test (Web Browser Automation) use below command
-     mvn test -D suite=accessibility.xml
-
-To run parallel test (Web Browser Automation) use below command
-     mvn test -D suite=parallel.xml
-
-To run single test (Android App Automation) use below command
-     mvn test -D suite=android_single.xml
-    
-To run single test (Android App Automation) use below command
-     mvn test -D suite=android_parallel.xml    
- 
-To run single test (iOS App Automation) use below command
-     mvn test -D suite=iOS_single.xml
-    
-To run single test (iOS App Automation) use below command
-     mvn test -D suite=iOS_parallel.xml 
-
-To run Cypress Test use below command
-     npm test    
-     
-To run playwright Test - Single Thread    
-     node playwright_single.js 
-     
-To run playwright Test - Parallel 3 Thread's
-     node playwright_parallel.js   
-
+```bash
+mvn test -D suite=mobile.xml
 ```
 
-### Visual UI Tests with Selenium
+## 🤖 Android App Automation
 
-Navigate to https://smartui.lambdatest.com/projects
+```bash
+# Single test
+mvn test -D suite=android_single.xml
 
-1. Run command ```   mvn test -D suite=visual_baseline.xml -Denv.project=<NAME_OF_THE_CUSTOMER> ``` 
-2. run command ```  mvn test -D suite=visualchangebuild.xml -Denv.project=<NAME_OF_THE_CUSTOMER> ```
+# Parallel test
+mvn test -D suite=android_parallel.xml
+```
 
-Runs will be reflected in the smartUI dashboard with the same project name as passed in maven commands((NAME_OF_THE_CUSTOMER) ) above 
+## 🍏 iOS App Automation
 
-### Run test with Hyperexecute
+```bash
+# Single test
+mvn test -D suite=iOS_single.xml
 
+# Parallel test
+mvn test -D suite=iOS_parallel.xml
+```
 
-1. Run function test ```   ./hyperexecute --config testng_hyperexecute_autosplit_sample.yaml --download-artifacts --force-clean-artifacts --user <username> --key <accesskey>  ```
-2. Run jmeter test ```   ./hyperexecute --config jmeter.yaml --download-artifacts --force-clean-artifacts --user <username> --key <accesskey>  ```
+## 🧪 Cypress Tests
 
-Runs will be reflected in the Hyperexecute dashboard here https://hyperexecute.lambdatest.com/hyperexecute/jobs
+```bash
+npm test
+```
 
+## 🎭 Playwright Tests
 
+```bash
+# Single-threaded
+node playwright_single.js
 
-
-
+# Parallel with 3 threads
+node playwright_parallel.js
+```
