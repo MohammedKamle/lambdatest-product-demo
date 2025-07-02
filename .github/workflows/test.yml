@@ -22,72 +22,248 @@ on:
           - iOS App Automation (Visual Regression - SDK)
 
 jobs:
-  run_tests:
-    runs-on: ubuntu-latest
+  # --- Web Automation Jobs ---
 
+  web_automation_accessibility_single:
+    if: github.event.inputs.test_type == 'Web Automation With Accessibility (Single)'
+    runs-on: ubuntu-latest
+    name: Run Web Automation With Accessibility (Single)
     env:
       LT_USERNAME: ${{ secrets.LT_USERNAME}}
       LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
       PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Set up Java for Maven tests
         uses: actions/setup-java@v4
         with:
           java-version: '11'
-          distribution: 'temurin'  # Use 'temurin' for Eclipse Temurin
-          cache: 'maven'           # Enable caching for Maven dependencies
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=single.xml
 
+  web_browser_automation_parallel:
+    if: github.event.inputs.test_type == 'Web Browser Automation (Parallel)'
+    runs-on: ubuntu-latest
+    name: Run Web Browser Automation (Parallel)
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=parallel.xml
+
+  web_browser_automation_sdk:
+    if: github.event.inputs.test_type == 'Web Browser Automation (SDK)'
+    runs-on: ubuntu-latest
+    name: Run Web Browser Automation (SDK)
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Set up Node.js for Playwright and Cypress
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-
-      - name: Run the selected test
+      - name: Run Tests
         run: |
-          case "${{ github.event.inputs.test_type }}" in
-            "Web Automation With Accessibility (Single)")
-              mvn test -D suite=single.xml
-              ;;
-            "Web Browser Automation (Parallel)")
-              mvn test -D suite=parallel.xml
-              ;;
-            "Web Browser Automation (SDK)")
-              npm install -g @lambdatest/smartui-cli --force
-              smartui --config smartui-web.json exec -- mvn test -Dsuite=web-sdk-cloud.xml
-              ;;
-            "Mobile Browser Automation (Single)")
-              mvn test -D suite=mobile.xml
-              ;;
-            "Android App Automation (Single)")
-              mvn test -D suite=android_single.xml
-              ;;
-            "Android App Automation (Parallel)")
-              mvn test -D suite=android_parallel.xml
-              ;;
-            "iOS App Automation (Single)")
-              mvn test -D suite=iOS_single.xml
-              ;;
-            "iOS App Automation (Parallel)")
-              mvn test -D suite=iOS_parallel.xml
-              ;;
-            "Android App Automation (Visual Regression)")
-              mvn test -D suite=android_visual_regression_hooks.xml
-              ;;
-            "iOS App Automation (Visual Regression)")
-              mvn test -D suite=iOS_visual_regression_hooks.xml
-              ;;
-            "Android App Automation (Visual Regression - SDK)")
-              mvn test -D suite=android_visual_regression_sdk.xml
-              ;;
-            "iOS App Automation (Visual Regression - SDK)")
-              mvn test -D suite=iOS_visual_regression_sdk.xml
-              ;; 
-            *)
-              echo "Invalid option selected"
-              exit 1
-              ;;
-          esac
+          npm install -g @lambdatest/smartui-cli --force
+          smartui --config smartui-web.json exec -- mvn test -Dsuite=web-sdk-cloud.xml
+
+  mobile_browser_automation_single:
+    if: github.event.inputs.test_type == 'Mobile Browser Automation (Single)'
+    runs-on: ubuntu-latest
+    name: Run Mobile Browser Automation (Single)
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=mobile.xml
+
+  # --- Mobile App Automation Jobs ---
+
+  android_app_automation_single:
+    if: github.event.inputs.test_type == 'Android App Automation (Single)'
+    runs-on: ubuntu-latest
+    name: Run Android App Automation (Single)
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=android_single.xml
+
+  android_app_automation_parallel:
+    if: github.event.inputs.test_type == 'Android App Automation (Parallel)'
+    runs-on: ubuntu-latest
+    name: Run Android App Automation (Parallel)
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=android_parallel.xml
+
+  ios_app_automation_single:
+    if: github.event.inputs.test_type == 'iOS App Automation (Single)'
+    runs-on: ubuntu-latest
+    name: Run iOS App Automation (Single)
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=iOS_single.xml
+
+  ios_app_automation_parallel:
+    if: github.event.inputs.test_type == 'iOS App Automation (Parallel)'
+    runs-on: ubuntu-latest
+    name: Run iOS App Automation (Parallel)
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=iOS_parallel.xml
+
+  # --- Visual Regression Jobs ---
+
+  android_app_visual_regression:
+    if: github.event.inputs.test_type == 'Android App Automation (Visual Regression)'
+    runs-on: ubuntu-latest
+    name: Run Android App Visual Regression
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=android_visual_regression_hooks.xml
+
+  ios_app_visual_regression:
+    if: github.event.inputs.test_type == 'iOS App Automation (Visual Regression)'
+    runs-on: ubuntu-latest
+    name: Run iOS App Visual Regression
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=iOS_visual_regression_hooks.xml
+
+  android_app_visual_regression_sdk:
+    if: github.event.inputs.test_type == 'Android App Automation (Visual Regression - SDK)'
+    runs-on: ubuntu-latest
+    name: Run Android App Visual Regression (SDK)
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=android_visual_regression_sdk.xml
+
+  ios_app_visual_regression_sdk:
+    if: github.event.inputs.test_type == 'iOS App Automation (Visual Regression - SDK)'
+    runs-on: ubuntu-latest
+    name: Run iOS App Visual Regression (SDK)
+    env:
+      LT_USERNAME: ${{ secrets.LT_USERNAME}}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java for Maven tests
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: 'maven'
+      - name: Run Tests
+        run: mvn test -D suite=iOS_visual_regression_sdk.xml
