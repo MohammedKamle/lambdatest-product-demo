@@ -23,12 +23,15 @@ on:
 
 jobs:
   run_tests:
+    # This is the key change. The name of the job is now dynamic according the workflow.
+    name: Run - ${{ github.event.inputs.test_type }}
+    
     runs-on: ubuntu-latest
 
     env:
-      LT_USERNAME: ${{ secrets.LT_USERNAME}}
-      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
-      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+      LT_USERNAME: ${{ secrets.LT_USERNAME }}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN }}
     
     steps:
       - name: Checkout repository
@@ -38,10 +41,10 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '11'
-          distribution: 'temurin'  # Use 'temurin' for Eclipse Temurin
-          cache: 'maven'           # Enable caching for Maven dependencies
+          distribution: 'temurin'  
+          cache: 'maven'           
 
-      - name: Set up Node.js for Playwright and Cypress
+      - name: Set up Node.js for SmartUI CLI
         uses: actions/setup-node@v3
         with:
           node-version: '20'
