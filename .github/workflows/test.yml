@@ -23,7 +23,7 @@ on:
 
 jobs:
   run_tests:
-    # This is the key change. The name of the job is now dynamic according the workflow.
+    # This is the key change. The name of the job is now dynamic.
     name: Run - ${{ github.event.inputs.test_type }}
     
     runs-on: blacksmith-2vcpu-ubuntu-2404-arm
@@ -41,8 +41,8 @@ jobs:
         uses: useblacksmith/setup-java@v5
         with:
           java-version: '11'
-          distribution: 'temurin'  
-          cache: 'maven'           
+          distribution: 'temurin'  # Use 'temurin' for Eclipse Temurin
+          cache: 'maven'           # Enable caching for Maven dependencies
 
       - name: Set up Node.js for SmartUI CLI
         uses: useblacksmith/setup-node@v5
