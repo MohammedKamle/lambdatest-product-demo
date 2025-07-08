@@ -25,8 +25,9 @@ jobs:
   run_tests:
     # This is the key change. The name of the job is now dynamic.
     name: Run - ${{ github.event.inputs.test_type }}
-    
-    runs-on: blacksmith-2vcpu-ubuntu-2404-arm
+    runs-on: ubuntu-latest
+
+    # runs-on: blacksmith-2vcpu-ubuntu-2404-arm
 
     env:
       LT_USERNAME: ${{ secrets.LT_USERNAME }}
