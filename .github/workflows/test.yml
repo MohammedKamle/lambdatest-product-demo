@@ -23,26 +23,30 @@ on:
 
 jobs:
   run_tests:
+    # This is the key change. The name of the job is now dynamic.
+    name: Run - ${{ github.event.inputs.test_type }}
     runs-on: ubuntu-latest
 
+    # runs-on: blacksmith-2vcpu-ubuntu-2404-arm
+
     env:
-      LT_USERNAME: ${{ secrets.LT_USERNAME}}
-      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY}}
-      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN}}
+      LT_USERNAME: ${{ secrets.LT_USERNAME }}
+      LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
+      PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN }}
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Java for Maven tests
-        uses: actions/setup-java@v4
+        uses: useblacksmith/setup-java@v5
         with:
           java-version: '11'
           distribution: 'temurin'  # Use 'temurin' for Eclipse Temurin
           cache: 'maven'           # Enable caching for Maven dependencies
 
-      - name: Set up Node.js for Playwright and Cypress
-        uses: actions/setup-node@v3
+      - name: Set up Node.js for SmartUI CLI
+        uses: useblacksmith/setup-node@v5
         with:
           node-version: '20'
 
